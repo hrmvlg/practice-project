@@ -8,6 +8,13 @@
 </head>
 <body class="container">
 <div>
+    <h5>Исполнители</h5>
+    <form method="POST" action="AddArtist/">
+    {% csrf_token %}
+        {{ formArtist.as_table }}
+        <input class="btn btn-primary" type="submit" value="Сохранить" name="bntAddArtist">
+    </form>
+    <br>
     <h5>Список исполнителей</h5>
     <table class="table table-striped table-bordered table-sm">
         <thead class="thead-dark">
@@ -21,31 +28,16 @@
         </tr>
         {% endfor %}
     </table>
-    <button url="">Новый исполнитель</button>
 </div>
 <br>
 <div>
     <h5>Альбомы</h5>
     <form method="POST" action="AddAlbum/">
-        {% csrf_token %}
-        <!--p>
-            <label>Введите название альбома</label>
-            <input class="form-control form-control-sm" type="text" name="name_of_album"/>
-            <label>Выберите исполнителя</label>
-            <select class="form-control form-control-sm" name="artists">
-
-                {% for artist in artist %}
-               <option>  {{ artist.artists_name }} </option>
-                {% endfor %}
-            </select>
-            <label>Загрузите изображение обложки</label>
-            <input class="form-control-file form-control-sm" type="file" name="cover"/>
-            <label>Выберите дату релиза</label>
-            <input class="form-control form-control-sm" type="date" name="release_date"/>
-
-        </p -->
-        {{ formAlbum.as_table }}
-        <input class="btn btn-primary" type="submit" value="Сохранить">
+        <div class="form-group">
+            {% csrf_token %}
+            {{ formAlbum.as_table }}
+        </div>
+        <input class="btn btn-primary" type="submit" value="Сохранить" name="bntAddAlbum">
     </form>
     <br>
     <h5>Список альбомов</h5>
@@ -71,17 +63,10 @@
 <br>
 <div>
     <h5> Треки </h5>
-    <form method="POST" action="AddNewTrack/">
+    <form method="POST" action="AddTrack/">
         {% csrf_token %}
-        <p>
-            <label>Введите название трека</label>
-            <input class="form-control form-control-sm" type="text" name="songs_title"/>
-            <label>Выберите альбом</label>
-            <input class="form-control form-control-sm" type="" name="album"/>
-            <label>Загрузите трек</label>
-            <input class="form-control-file form-control-sm" type="file" name="track"/>
-        </p>
-        <input class="btn btn-primary" type="submit" value="Сохранить">
+        {{ formTrack.as_table }}
+        <input class="btn btn-primary" type="submit" value="Сохранить" name="btnAddTrack">
     </form>
     <br>
     <h5>Список треков</h5>
