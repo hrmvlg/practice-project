@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = (
-    path('', views.AllAboutMusic),
+    path('AddTrack/', views.AddTrack),
     path('AddArtist/', views.AddArtist),
     path('AddAlbum/', views.AddAlbum),
-    path('AddTrack/', views.AddTrack),
+    path('', views.AllAboutMusic),
 )

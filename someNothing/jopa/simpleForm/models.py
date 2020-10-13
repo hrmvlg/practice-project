@@ -4,12 +4,10 @@ from django.db import models
 class Artist(models.Model):
     artists_name = models.CharField(max_length=255)
 
-    # выводить альбомы и исполнителей автоматом
+    # выводить альбомы и исполнителей автоматом ??
 
     def __str__(self):
         return "%s" % self.artists_name
-
-    pass
 
 
 class Album(models.Model):
@@ -20,8 +18,6 @@ class Album(models.Model):
 
     def __str__(self):
         return "%s" % self.name_of_album
-
-    pass
 
 
 class MusicTrack(models.Model):
@@ -35,5 +31,3 @@ class MusicTrack(models.Model):
     def __str__(self):
         # разобраться с выводом исполнителей
         return "%s" % self.songs_title
-
-    pass
