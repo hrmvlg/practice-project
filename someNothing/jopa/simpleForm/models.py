@@ -20,11 +20,6 @@ class Album(models.Model):
     def __str__(self):
         return "%s" % self.name_of_album
 
-    @property
-    def cover_url(self):
-        if self.cover and hasattr(self.cover, 'url'):
-            return self.cover.url
-
 
 class MusicTrack(models.Model):
     songs_title = models.CharField(max_length=255)

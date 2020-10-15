@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import ArtistForm, AlbumForm, TrackForm
 from .models import Artist, Album, MusicTrack
@@ -32,16 +32,12 @@ def AddArtist(request):
             new_artist.save()
     return HttpResponseRedirect("/")
 
-
 def AddAlbum(request):
-    # formAlbum = AlbumForm()
-    if request.method == "POST":
-        formAlbum = AlbumForm(request.POST, request.FILES)
+    formAlbum = AlbumForm
+    if request.method == 'POST' :
+        formAlbum = formAlbum(request.POST, request.FILES)
         if formAlbum.is_valid():
             formAlbum.save()
-            return redirect('/')
-        else:
-            return HttpResponse(status=500)
     return HttpResponseRedirect("/")
 
 

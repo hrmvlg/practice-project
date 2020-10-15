@@ -15,7 +15,7 @@ class AlbumForm(ModelForm):
         model = Album
         fields = '__all__'
         widgets = {
-            'release_date': DateInput(attrs={'type': 'date'})
+            'release_date': DateInput(attrs={'type': 'date'}),
         }
 
 

@@ -32,7 +32,7 @@
 <br>
 <div>
     <h5>Альбомы</h5>
-    <form method="POST" action="AddAlbum/">
+    <form method="POST" action="AddAlbum/" enctype="multipart/form-data">
         <div class="form-group">
             {% csrf_token %}
             {{ formAlbum.as_table }}
