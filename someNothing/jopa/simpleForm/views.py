@@ -32,9 +32,10 @@ def AddArtist(request):
             new_artist.save()
     return HttpResponseRedirect("/")
 
+
 def AddAlbum(request):
     formAlbum = AlbumForm
-    if request.method == 'POST' :
+    if request.method == 'POST':
         formAlbum = formAlbum(request.POST, request.FILES)
         if formAlbum.is_valid():
             formAlbum.save()
@@ -42,4 +43,9 @@ def AddAlbum(request):
 
 
 def AddTrack(request):
+    formTrack = TrackForm
+    if request.method == 'POST':
+        formTrack = formTrack(request.POST, request.FILES)
+        if formTrack.is_valid():
+            formTrack.save()
     return HttpResponseRedirect("/")

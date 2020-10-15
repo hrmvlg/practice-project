@@ -25,7 +25,7 @@ class MusicTrack(models.Model):
     songs_title = models.CharField(max_length=255)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     # artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default=0)
-    track = models.FileField(upload_to='tracks/')
+    track = models.FileField(upload_to='tracks/', blank=True)
 
     def __str__(self):
         # разобраться с выводом исполнителей

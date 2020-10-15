@@ -65,7 +65,7 @@
 <br>
 <div>
     <h5> Треки </h5>
-    <form method="POST" action="AddTrack/">
+    <form method="POST" action="AddTrack/" enctype="multipart/form-data">
         {% csrf_token %}
         {{ formTrack.as_table }}
         <input class="btn btn-primary" type="submit" value="Сохранить" name="btnAddTrack">
@@ -76,7 +76,6 @@
         <thead class="thead-dark">
         <tr>
             <th>Наименование</th>
-            <th>Исполнитель</th>
             <th>Альбом</th>
             <th>Трек</th>
         </tr>
@@ -84,10 +83,11 @@
         {% for music_track in music_track %}
         <tr>
             <td>{{ music_track.songs_title }}</td>
-            <td>{{ music_track.artist}}</td>
             <td>{{ music_track.album}}</td>
             <td>
-                <audio src="{{ music_track.track }}"/>
+                <audio controls>
+                    <source src="media/{{ music_track.track }}" type="audio/mpeg">
+                </audio>
             </td>
         </tr>
         {% endfor %}
