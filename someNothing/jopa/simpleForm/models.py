@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class Artist(models.Model):
@@ -19,14 +20,17 @@ class Album(models.Model):
     def __str__(self):
         return "%s" % self.name_of_album
 
+    @property
+    def cover_url(self):
+        if self.cover and hasattr(self.cover, 'url'):
+            return self.cover.url
+
 
 class MusicTrack(models.Model):
     songs_title = models.CharField(max_length=255)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     # artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default=0)
     track = models.FileField(upload_to='tracks/')
-
-    # Добавление аудиодорожки
 
     def __str__(self):
         # разобраться с выводом исполнителей

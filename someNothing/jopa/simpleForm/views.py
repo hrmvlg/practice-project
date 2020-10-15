@@ -1,11 +1,11 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import ArtistForm, AlbumForm, TrackForm
 from .models import Artist, Album, MusicTrack
 
 
-def AllAboutMusic(request):
+def index(request):
     formArtist = ArtistForm()
     formAlbum = AlbumForm()
     formTrack = TrackForm()
@@ -13,6 +13,7 @@ def AllAboutMusic(request):
     artist = Artist.objects.all()
     album = Album.objects.all()
     music_track = MusicTrack.objects.all()
+
     context = {'artist': artist,
                'album': album,
                'music_track': music_track,
@@ -33,12 +34,14 @@ def AddArtist(request):
 
 
 def AddAlbum(request):
-    #formAlbum = AlbumForm()
+    # formAlbum = AlbumForm()
     if request.method == "POST":
-        formAlbum = AlbumForm(request.POST)
+        formAlbum = AlbumForm(request.POST, request.FILES)
         if formAlbum.is_valid():
             formAlbum.save()
             return redirect('/')
+        else:
+            return HttpResponse(status=500)
     return HttpResponseRedirect("/")
 
 

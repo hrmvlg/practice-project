@@ -10,7 +10,7 @@
 <div>
     <h5>Исполнители</h5>
     <form method="POST" action="AddArtist/">
-    {% csrf_token %}
+        {% csrf_token %}
         {{ formArtist.as_table }}
         <input class="btn btn-primary" type="submit" value="Сохранить" name="bntAddArtist">
     </form>
@@ -52,7 +52,9 @@
         </thead>
         {% for album in album %}
         <tr>
-            <td><img src="{{ album.cover }}"></td>
+            <td>
+               <img src="media/{{ album.cover }}" height="100" width="100"/>
+            </td>
             <td>{{ album.name_of_album }}</td>
             <td>{{ album.artists}}</td>
             <td>{{ album.release_date}}</td>
