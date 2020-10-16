@@ -1,11 +1,8 @@
 from django.db import models
-from django.utils.safestring import mark_safe
 
 
 class Artist(models.Model):
     artists_name = models.CharField(max_length=255)
-
-    # выводить альбомы и исполнителей автоматом ??
 
     def __str__(self):
         return "%s" % self.artists_name
@@ -28,5 +25,4 @@ class MusicTrack(models.Model):
     track = models.FileField(upload_to='tracks/', blank=True)
 
     def __str__(self):
-        # разобраться с выводом исполнителей
         return "%s" % self.songs_title
