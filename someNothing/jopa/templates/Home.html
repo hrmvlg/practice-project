@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container"
+     style="
+     font-size: 30px;
+     text-align: center;
+     padding-top: 100px;
+     padding-bottom: 100px;
+     background: rgba(20,23,25, 0.5);
+     margin-top: 180px;
+">
+    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum esse est, nemo nostrum obcaecati provident sit?
+        Dignissimos qui rem voluptate!</p>
+    <br>
+    <a class="btn btn-light" style="width: 120px; height: 40px; margin-right: 50px" href="{% url 'Upload'%}">
+        UPLOAD </a>
+    <a class="btn btn-light" style="width: 120px; height: 40px" href=""> GENERATE </a>
+</div>
+
+{% endblock %}s

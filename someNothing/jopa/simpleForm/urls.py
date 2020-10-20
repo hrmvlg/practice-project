@@ -1,15 +1,17 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, re_path
-from django.views.static import serve
+from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
-    path('AddTrack/', views.AddTrack),
-    path('AddArtist/', views.AddArtist),
-    path('AddAlbum/', views.AddAlbum),
-    path('', views.index),
+    path('Upload/AddTrack/', views.AddTrack),
+    path('Upload/AddArtist/', views.AddArtist),
+    path('Upload/AddAlbum/', views.AddAlbum),
+    path('Upload/', views.Upload, name='Upload'),
+    path('Generate/', views.Generate, name='Generate'),
+    path('', views.index, name='index'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

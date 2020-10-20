@@ -1,26 +1,12 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import ArtistForm, AlbumForm, TrackForm
+from .forms import ArtistForm, AlbumForm, TrackForm, GenerateForm
 from .models import Artist, Album, MusicTrack
 
 
 def index(request):
-    formArtist = ArtistForm()
-    formAlbum = AlbumForm()
-    formTrack = TrackForm()
-
-    artist = Artist.objects.all()
-    album = Album.objects.all()
-    music_track = MusicTrack.objects.all()
-
-    context = {'artist': artist,
-               'album': album,
-               'music_track': music_track,
-               'formArtist': formArtist,
-               'formAlbum': formAlbum,
-               'formTrack': formTrack}
-    return render(request, 'AllAboutMusic.html', context)
+    return render(request, 'Home.html')
 
 
 def AddArtist(request):
@@ -30,7 +16,7 @@ def AddArtist(request):
             new_artist = Artist()
             new_artist.artists_name = request.POST.get('artists_name')
             new_artist.save()
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/Upload")
 
 
 def AddAlbum(request):
@@ -39,7 +25,7 @@ def AddAlbum(request):
         formAlbum = formAlbum(request.POST, request.FILES)
         if formAlbum.is_valid():
             formAlbum.save()
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/Upload")
 
 
 def AddTrack(request):
@@ -48,4 +34,25 @@ def AddTrack(request):
         formTrack = formTrack(request.POST, request.FILES)
         if formTrack.is_valid():
             formTrack.save()
-    return HttpResponseRedirect("/")
+    return HttpResponseRedirect("/Upload")
+
+
+def Upload(request):
+    formArtist = ArtistForm()
+    artist = Artist.objects.all()
+    formAlbum = AlbumForm()
+    album = Album.objects.all()
+    formTrack = TrackForm()
+    music_track = MusicTrack.objects.all()
+    context = {'artist': artist, 'formArtist': formArtist,
+               'album': album, 'formAlbum': formAlbum,
+               'music_track': music_track, 'formTrack': formTrack}
+
+    return render(request, 'Upload.html', context)
+
+
+def Generate(request):
+    formGenerate = GenerateForm()
+    album = Album.objects.all()
+    context = {'album': album, 'formGenerate': formGenerate}
+    return render(request, 'Generate.html', context)

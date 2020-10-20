@@ -1,4 +1,5 @@
-from django.forms import ModelForm, DateInput
+from django.forms import ModelForm, DateInput, Form
+
 from .models import MusicTrack, Album, Artist
 
 
@@ -34,4 +35,13 @@ class TrackForm(ModelForm):
             'songs_title': 'Название трека',
             'album': 'Выберите альбом',
             'track': 'Загрузите аудиодорожку',
+        }
+
+
+class GenerateForm(ModelForm):
+    class Meta:
+        model = MusicTrack
+        fields = ("album", )
+        labels = {
+            'album': 'Выберите альбом'
         }
